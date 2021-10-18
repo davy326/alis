@@ -721,7 +721,7 @@ function configuration() {
 
     if [ -n "$SWAP_SIZE" ]; then
         echo "# swap" >> /mnt/etc/fstab
-        echo "$SWAPFILE none swap defaults 0 0" >> /mnt/etc/fstab
+        echo "/swap$SWAPFILE none swap defaults 0 0" >> /mnt/etc/fstab
         echo "" >> /mnt/etc/fstab
     fi
 
