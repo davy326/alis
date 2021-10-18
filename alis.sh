@@ -641,7 +641,7 @@ function partition() {
         btrfs subvolume create /mnt/@var
         btrfs subvolume create /mnt/@temp
 	btrfs subvolume create /mnt/@snapshots
-	btrfs subvolume create /mnt/swap
+	btrfs subvolume create /mnt/@swap
         umount /mnt
 
         mount -o "subvol=@,$PARTITION_OPTIONS,compress=zstd" "$DEVICE_ROOT" /mnt
@@ -653,6 +653,7 @@ function partition() {
         mount -o "subvol=@opt,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/opt
 	mount -o "subvol=@temp,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/temp
 	mount -o "subvol=@snapshots,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/.snapshots
+	mount -o "subvol=@swap,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/swap
     else
         mount -o "$PARTITION_OPTIONS_ROOT" "$DEVICE_ROOT" /mnt
 
