@@ -621,8 +621,8 @@ function partition() {
     fi
 
     # options
-    PARTITION_OPTIONS_BOOT="defaults"
-    PARTITION_OPTIONS_ROOT="defaults"
+    PARTITION_OPTIONS_BOOT="ssd,space_cache,commit=120,"
+    PARTITION_OPTIONS_ROOT="ssd,space_cache,commit=120,"
 
     if [ "$DEVICE_TRIM" == "true" ]; then
         PARTITION_OPTIONS_BOOT="$PARTITION_OPTIONS_BOOT,noatime"
@@ -652,7 +652,6 @@ function partition() {
         mount -o "subvol=@var" "$DEVICE_ROOT" /mnt/var
         mount -o "subvol=@opt,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/opt
 	mount -o "subvol=@temp,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/temp
-	mount -o "subvol=@snapshots,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/.snapshots
 	mount -o "subvol=@swap,$PARTITION_OPTIONS_ROOT,compress=zstd" "$DEVICE_ROOT" /mnt/swap
     else
         mount -o "$PARTITION_OPTIONS_ROOT" "$DEVICE_ROOT" /mnt
